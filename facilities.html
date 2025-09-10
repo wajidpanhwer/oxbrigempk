@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HOME</title>
+  <link rel="stylesheet" href="project.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+ <!-- Preloader -->
+<div id="preloader">
+    <div class="preloader-content">
+      <div class="preloader-logo">
+        <img src="faculty/logo1_isnet-general-use.png" alt="">
+      </div>
+      <div class="preloader-text">OUR FACILITIES</div>
+      <div class="preloader-spinner"></div>
+    </div>
+</div>
+
+
+
+<div class=" facility-container">
+  <header>
+    
+    <div class="logo">
+      <img src="faculty/logo1_isnet-general-use.png">
+    </div>
+    <div class="humburger" onclick="toggleMenu()">
+      &#9776;
+    </div>
+<nav class="navbar">
+    
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="index.html" class="active">
+        HOME</a></li>
+
+       <li class="dropdown">
+    <a href="#" class="dropdown-toggle">Courses ▾</a>
+    <ul class="dropdown-panel">
+      <li><a href="computer.html">Computer</a></li>
+      <li><a href="coaching.html">coaching</a></li>
+      <li><a href="#">Language</a></li>
+    </ul>
+  </li>
+
+        <li><a href="about.html">ABOUT</a></li>
+        <li><a href="gallery.html">GALLERY</a></li>
+
+<li><a href="faculty.html">FACULTY</a></li>
+<li><a href="facilities.html">FACILITIES</a></li>
+<li><a href="contact.html">CONTACT</a></li>
+
+
+
+
+
+      </ul>
+    
+    </nav>
+   
+
+ 
+  </header>
+
+    <div class="shapater">
+<h1>OUR <SPAN class="w1">FACILITIES</SPAN></h1>
+
+
+
+   </div>
+
+
+   <div class="section">
+    
+    <div class="facilities">
+      
+      <div class="card">
+        <i class="fas fa-chalkboard-teacher icon"></i>
+        <h3>Experienced Teachers</h3>
+        <p>Our English course is taught by professional teachers with years of experience using modern teaching methods.</p>
+      </div>
+
+      <div class="card">
+        <i class="fas fa-school icon"></i>
+        <h3>Modern Classrooms</h3>
+        <p>Fully equipped classrooms with multimedia projectors and audio systems for interactive learning.</p>
+      </div>
+
+      <div class="card">
+        <i class="fas fa-book-open icon"></i>
+        <h3>Study Materials</h3>
+        <p>Free notes, handouts, practice worksheets, and vocabulary lists are provided to help students learn faster.</p>
+      </div>
+
+      <div class="card">
+        <i class="fas fa-clipboard-check icon"></i>
+        <h3>Weekly Tests</h3>
+        <p>Regular tests and quizzes to track progress and provide feedback for improvement.</p>
+      </div>
+
+      <div class="card">
+        <i class="fas fa-microphone-alt icon"></i>
+        <h3>Speaking Practice</h3>
+        <p>Group discussions, debates, and presentations to improve pronunciation and fluency.</p>
+      </div>
+
+      <div class="card">
+        <i class="fas fa-certificate icon"></i>
+        <h3>Certificate</h3>
+        <p>Students receive a recognized certificate upon course completion, useful for jobs and further studies.</p>
+      </div>
+
+      <div class="card">
+        <i class="fas fa-fingerprint icon"></i>
+        <h3>Biometrics Attendance</h3>
+        <p>Attendance is recorded with biometric thumb impression machines to ensure accuracy and transparency.</p>
+      </div>
+
+      <div class="card">
+        <i class="fas fa-video icon"></i>
+        <h3>Multimedia Classes</h3>
+        <p>Smart multimedia classes with projectors, videos, and audio systems to make learning more engaging.</p>
+      </div>
+
+      <div class="card">
+        <i class="fas fa-desktop icon"></i>
+        <h3>Computer Lab</h3>
+        <p>A fully functional computer lab available for practice, research, and language learning activities.</p>
+      </div>
+
+
+    </div>
+    <div class="modal" id="videoModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <video id="campusVideo" controls>
+      <source src="vip 2.mp4" type="video/mp4">
+      Your browser does not support HTML5 video.
+    </video>
+  </div>
+</div>
+  <!-- Video Button -->
+<div class="video-btn-container">
+  <button class="video-btn" onclick="openModal()">▶ Watch Campus Video</button>
+</div>
+
+<!-- Video Modal -->
+  </div>
+
+
+
+ <!-- VIP Footer -->
+<footer class="vip-footer">
+  <div class="footer-container">
+
+    <!-- Logo -->
+    <div class="footer-logo">
+      <img src="faculty/logo1_isnet-general-use.png" alt="Logo">
+      <p class="tagline">Your Future, Our Mission</p>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-links">
+      <h3>Quick Links</h3>
+      <a href="project.html">Home</a>
+      <a href="about.html">About</a>
+      
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="footer-contact">
+      <h3>Contact Us</h3>
+      <p><i class="fas fa-map-marker-alt"></i> Main Road, Karachi, Pakistan</p>
+      <p><i class="fas fa-phone"></i> ‪+92 300 1234567‬</p>
+      <p><i class="fas fa-envelope"></i> info@example.com</p>
+    </div>
+
+    <!-- Social Media -->
+    <div class="footer-social">
+      <h3>Follow Us</h3>
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+  </div>
+
+  <!-- Bottom Line -->
+  <div class="footer-bottom">
+    <p>© 2025 All Rights Reserved | OXBRIDGE ACADEMY 
+    </p>
+  </div>
+</footer>
+
+
+  <script src="oxbridge.js"></script>
+</body>
+</html>

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Admission Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            background: #4a6fc7;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .form-container {
+            padding: 30px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            color: #4a6fc7;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #4a6fc7;
+            box-shadow: 0 0 0 3px rgba(74, 111, 199, 0.2);
+        }
+        
+        .course-options {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .course-option {
+            flex: 1;
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid #e9ecef;
+        }
+        
+        .course-option:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .course-option.active {
+            background: #e9f1ff;
+            border-color: #4a6fc7;
+        }
+        
+        .course-option i {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #4a6fc7;
+        }
+        
+        .course-details {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        
+        .course-details.active {
+            display: block;
+        }
+        
+        .photo-upload {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .photo-preview {
+            width: 120px;
+            height: 120px;
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .photo-preview img {
+            max-width: 100%;
+            display: none;
+        }
+        
+        .upload-btn {
+            padding: 12px 20px;
+            background: #f0f5ff;
+            color: #4a6fc7;
+            border: 1px solid #4a6fc7;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .upload-btn:hover {
+            background: #4a6fc7;
+            color: white;
+        }
+        
+        .btn-submit {
+            background: #4a6fc7;
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
+        .btn-submit:hover {
+            background: #3b5aa6;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .col {
+            flex: 1;
+        }
+        
+        .success-message {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+        }
+        
+        .success-message.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .success-message i {
+            font-size: 70px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        
+        .success-message h2 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .success-message p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .btn-continue {
+            padding: 12px 30px;
+            background: #4a6fc7;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-continue:hover {
+            background: #3b5aa6;
+            transform: translateY(-2px);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @media (max-width: 768px) {
+            .row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .course-options {
+                flex-direction: column;
+            }
+            
+            .photo-upload {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Course Admission Form</h1>
+            <p>Please fill out the form below to apply for your desired course</p>
+        </div>
+        
+        <div class="form-container">
+            <form id="admissionForm">
+                <h2 class="section-title">Select Course Category</h2>
+                <div class="course-options">
+                    <div class="course-option active" data-course="computer">
+                        <i class="fas fa-laptop-code"></i>
+                        <h3>Computer</h3>
+                    </div>
+                    <div class="course-option" data-course="language">
+                        <i class="fas fa-language"></i>
+                        <h3>Language</h3>
+                    </div>
+                    <div class="course-option" data-course="coaching">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>Coaching</h3>
+                    </div>
+                </div>
+                
+                <!-- Computer Courses -->
+                <div class="course-details active" id="computer-courses">
+                    <h2 class="section-title">Computer Course Details</h2>
+                    <div class="form-group">
+                        <label for="computer-course">Select Computer Course</label>
+                        <select id="computer-course" name="computer-course" required>
+                            <option value="">-- Select a course --</option>
+                            <option value="web-development">CIT(certificate ininformation technology)</option>
+                            <option value="web-development">DIT(diploma in information technology)</option>
+                            <option value="web-development">Computerized accounting</option>
+                            <option value="web-development">Digital Multimedia Graphics</option>
+                            <option value="web-development">Web Development</option>
+                            <option value="web-development">Oops Programing Language</option>
+                            <option value="data-science">Hardware and Pc maintainence</option>
+                            <option value="graphic-design">SQL Server</option>
+                            <option value="cyber-security">Advance Excel</option>
+                            <option value="python-programming">Auto Cad Civil</option>      
+                            <option value="python-programming">Ms Access Database Course</option>
+                         <option value="python-programming">Kids Computer Package Program</option>
+                          <option value="python-programming">Wordpress Full Customization </option>
+                           <option value="python-programming">Graphics and Webdesigning</option>
+                           <option value="python-programming">Networking Course</option>
+                           <option value="python-programming">Typing course</option>
+
+                        
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="computer-duration">Preferred Duration</label>
+                        <select id="computer-duration" name="computer-duration" required>
+                            <option value="">-- Select duration --</option>
+                              <option value="3-months">1 Months</option>
+                            <option value="3-months">3 Months</option>
+                            <option value="6-months">6 Months</option>
+                            <option value="1-year">1 Year</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Language Courses -->
+                <div class="course-details" id="language-courses">
+                    <h2 class="section-title">Language Course Details</h2>
+                    <div class="form-group">
+                        <label for="language-course">Select Language Course</label>
+                        <select id="language-course" name="language-course">
+                            <option value="">-- Select a language --</option>
+                            <option value="english">KIDS ENGLISH LANGUAGE</option>
+                            <option value="beginner">BEGINNER ENGLISH LANGUAGE</option>
+                            <option value="elementry">ELEMENTARY ENGLISH LANGUAGE</option>
+                            <option value="pre inter">PRE INTER ENGLISH LANGUAGE</option>
+                            <option value="intermidiate">INTERMIDIATE ENGLISH LANGUAGE </option>                                    
+                   
+                            <option value="upper">UPPER INTERMIDIATE ENGLISH LANGUAGE</option>
+                            <option value="advane">ADVANCE ENGLISH LANGUAGE </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="proficiency-level">Proficiency Level</label>
+                        <select id="proficiency-level" name="proficiency-level">
+                            <option value="">-- Select level --</option>
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Coaching Courses -->
+                <div class="course-details" id="coaching-courses">
+                    <h2 class="section-title">Coaching Course Details</h2>
+                    <div class="form-group">
+                        <label for="coaching-course">Select Coaching Course</label>
+                        <select id="coaching-course" name="coaching-course">
+                            <option value="">-- Select coaching type --</option>
+                            <option value="ix_x">IX AND X </option>
+                            <option value="neet">XI AND XII PRE ENGINEERING</option>
+                            <option value="gate">XI AND XII PRE MEDICAL</option>
+                      
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="coaching-duration">Preferred Batch Time</label>
+                        <select id="coaching-duration" name="coaching-duration">
+                            <option value="">-- Select batch time --</option>
+                            <option value="morning">Morning (6 AM - 9 AM)</option>
+                            <option value="afternoon">Afternoon (2 PM - 5 PM)</option>
+                            <option value="evening">Evening (6 PM - 9 PM)</option>
+                            <option value="weekend">Weekend Only</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <h2 class="section-title">Personal Information</h2>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="fullname">Full Name</label>
+                            <input type="text" id="fullname" name="fullname" required placeholder="Enter your full name">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required placeholder="Enter your email">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="dob">Date of Birth</label>
+                            <input type="date" id="dob" name="dob" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="address">Full Address</label>
+                    <textarea id="address" name="address" rows="3" required placeholder="Enter your complete address"></textarea>
+                </div>
+                
+                <h2 class="section-title">Upload Photo</h2>
+                <div class="form-group">
+                    <div class="photo-upload">
+                        <div class="photo-preview">
+                            <i class="fas fa-user fa-3x" id="placeholder-icon"></i>
+                            <img id="preview" src="#" alt="Preview">
+                        </div>
+                        <div>
+                            <input type="file" id="photo" name="photo" accept="image/*" hidden>
+                            <label for="photo" class="upload-btn"><i class="fas fa-upload"></i> Choose Photo</label>
+                            <p style="margin-top: 10px; color: #666;">Max size: 2MB (JPEG, PNG)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="education">Educational Qualification</label>
+                    <select id="education" name="education" required>
+                        <option value="">-- Select highest qualification --</option>
+                        <option value="high-school">High School</option>
+                        <option value="diploma">Diploma</option>
+                        <option value="bachelor">Bachelor's Degree</option>
+                        <option value="master">Master's Degree</option>
+                        <option value="phd">PhD</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Additional Message (Optional)</label>
+                    <textarea id="message" name="message" rows="3" placeholder="Any additional information you want to share..."></textarea>
+                </div>
+                
+                <button type="submit" class="btn-submit">Submit Application</button>
+            </form>
+        </div>
+        
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+            <i class="fas fa-check-circle"></i>
+            <h2>Application Submitted Successfully!</h2>
+            <p>Thank you for your application. We will contact you shortly with more information.</p>
+            <button class="btn-continue" id="continueButton">Continue</button>
+        </div>
+    </div>
+
+    <script>
+        // Course selection functionality
+        const courseOptions = document.querySelectorAll('.course-option');
+        const courseDetails = document.querySelectorAll('.course-details');
+        
+        courseOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                // Remove active class from all options and details
+                courseOptions.forEach(opt => opt.classList.remove('active'));
+                courseDetails.forEach(detail => detail.classList.remove('active'));
+                
+                // Add active class to clicked option
+                option.classList.add('active');
+                
+                // Show corresponding course details
+                const courseType = option.getAttribute('data-course');
+  document.getElementById(`${courseType}-courses`).classList.add('active');
+            });
+        });
+        
+        // Photo upload preview functionality
+        const photoInput = document.getElementById('photo');
+        const preview = document.getElementById('preview');
+        const placeholderIcon = document.getElementById('placeholder-icon');
+        
+        photoInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                
+                reader.addEventListener('load', function() {
+                    preview.src = reader.result;
+                    preview.style.display = 'block';
+                    placeholderIcon.style.display = 'none';
+                });
+                
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Form submission
+        document.getElementById('admissionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show success message
+            document.getElementById('successMessage').classList.add('active');
+        });
+        
+        // Continue button functionality
+        document.getElementById('continueButton').addEventListener('click', function() {
+            // Hide success message
+            document.getElementById('successMessage').classList.remove('active');
+            
+            // Reset form
+            document.getElementById('admissionForm').reset();
+            
+            // Reset course selection to default (Computer)
+            courseOptions.forEach(opt => opt.classList.remove('active'));
+            courseDetails.forEach(detail => detail.classList.remove('active'));
+            
+            document.querySelector('[data-course="computer"]').classList.add('active');
+            document.getElementById('computer-courses').classList.add('active');
+            
+            // Reset photo preview
+            preview.style.display = 'none';
+            placeholderIcon.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
